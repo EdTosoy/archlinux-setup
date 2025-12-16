@@ -1,1 +1,71 @@
-{}
+{
+    "floating_bar": false,
+    "floating_sidebar": false,
+    "corners": false,
+    "blur.enabled": true,
+    "blur.xray": true,
+    "always_show_battery": false,
+    "separated_workspaces": false,
+    "hide_empty_workspaces": false,
+    "old_fullscreen_behavior": true,
+    "one_popup_at_time": true,
+    "bar_media_style": 0,
+    "apps.enabled": true,
+    "apps.browser": "flatpak run app.zen_browser.zen",
+    "apps.terminal": "kitty",
+    "apps.editor": "antigravity",
+    "apps.files": "kitty -e yazi",
+    "hyprland.gaps_in": 5,
+    "hyprland.gaps_out": 12,
+    "hyprland.border_size": 0,
+    "hyprland.layout": "dwindle",
+    "hyprland.decoration.rounding": 10,
+    "hyprland.decoration.rounding_power": 2.0,
+    "snap.enabled": false,
+    "hyprland.misc.vrr": 0,
+    "hyprland.misc.middle_click_paste": true,
+    "keybinds_overrides": [
+        {
+            "id": "SUPER_B",
+            "action": [
+                "exec",
+                "flatpak run app.zen_browser.zen"
+            ]
+        },
+        {
+            "id": "SUPER_E",
+            "action": [
+                "exec",
+                "kitty -e yazi"
+            ]
+        },
+        {
+            "id": "SUPER_SHIFT_M",
+            "action": [
+                "exec",
+                "kitty -e btop"
+            ]
+        },
+        {
+            "id": "SUPER_H",
+            "action": [
+                "exec",
+                "pamac-manager"
+            ]
+        },
+        {
+            "id": "SUPER_Q",
+            "action": [
+                "exec",
+                "kitty"
+            ]
+        },
+        {
+            "id": "SUPER_RETURN",
+            "action": [
+                "exec",
+                "kitty"
+            ]
+        }
+    ]
+}
