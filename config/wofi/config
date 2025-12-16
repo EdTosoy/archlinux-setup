@@ -1,0 +1,9 @@
+width=500
+height=400
+mode=drun
+prompt=Search...
+allow_images=true
+image_size=32
+insensitive=true
+hide_scroll=true
+no_actions=true

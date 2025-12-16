@@ -1,0 +1,104 @@
+* {
+  font-family: "Noto Sans", "Font Awesome 6 Free", sans-serif;
+  font-size: 13px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: rgba(26, 26, 46, 0.9);
+  color: #ffffff;
+  border-bottom: 2px solid rgba(51, 204, 255, 0.5);
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#workspaces button {
+  padding: 0 8px;
+  color: #888888;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  margin: 4px 2px;
+  transition: all 0.3s ease;
+}
+
+#workspaces button:hover {
+  background: rgba(51, 204, 255, 0.2);
+  color: #33ccff;
+}
+
+#workspaces button.active {
+  color: #00ff99;
+  background: rgba(0, 255, 153, 0.15);
+  border-bottom: 2px solid #00ff99;
+}
+
+#workspaces button.urgent {
+  background: rgba(255, 85, 85, 0.3);
+  color: #ff5555;
+}
+
+#clock,
+#pulseaudio,
+#network,
+#bluetooth,
+#tray {
+  padding: 0 12px;
+  margin: 4px 4px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+#clock {
+  color: #33ccff;
+  font-weight: bold;
+}
+
+#pulseaudio {
+  color: #00ff99;
+}
+
+#pulseaudio.muted {
+  color: #ff5555;
+}
+
+#network {
+  color: #33ccff;
+}
+
+#network.disconnected {
+  color: #ff5555;
+}
+
+#bluetooth {
+  color: #9370db;
+}
+
+#bluetooth.disabled {
+  color: #666666;
+}
+
+#tray {
+  padding: 0 8px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: rgba(255, 85, 85, 0.3);
+}
+
+tooltip {
+  background: rgba(26, 26, 46, 0.95);
+  border: 1px solid rgba(51, 204, 255, 0.5);
+  border-radius: 8px;
+}
+
+tooltip label {
+  color: #ffffff;
+}

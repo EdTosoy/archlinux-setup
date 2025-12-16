@@ -1,0 +1,72 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 34,
+  "spacing": 4,
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["pulseaudio", "network", "bluetooth", "tray"],
+
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "󰲠",
+      "2": "󰲢",
+      "3": "󰲤",
+      "4": "󰲦",
+      "5": "󰲨",
+      "6": "󰲪",
+      "7": "󰲬",
+      "8": "󰲮",
+      "9": "󰲰",
+      "10": "󰿬",
+      "urgent": "",
+      "default": ""
+    },
+    "on-click": "activate"
+  },
+
+  "clock": {
+    "format": "  {:%a %d %b  %H:%M}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "format": {
+        "today": "<span color='#00ff99'><b>{}</b></span>"
+      }
+    }
+  },
+
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "󰝟  Muted",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+  },
+
+  "network": {
+    "interface": "enp4s0",
+    "format-ethernet": "󰈀  {ipaddr}",
+    "format-wifi": "󰖩  {essid} ({signalStrength}%)",
+    "format-disconnected": "󰖪  Disconnected",
+    "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+    "on-click": "nm-connection-editor"
+  },
+
+  "bluetooth": {
+    "format": "󰂯",
+    "format-connected": "󰂱 {device_alias}",
+    "format-disabled": "󰂲",
+    "tooltip-format": "{controller_alias}\n{num_connections} connected",
+    "on-click": "blueman-manager"
+  },
+
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  }
+}

@@ -1,0 +1,27 @@
+# Ignore cache files
+*.cache
+*.log
+*.tmp
+
+# Ignore sensitive data
+**/secrets*
+**/*token*
+**/*password*
+
+# Ignore large files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.mp4
+*.mkv
+
+# Ignore compiled files
+*.pyc
+__pycache__/
+*.so
+
+# OS files
+.DS_Store
+Thumbs.db
