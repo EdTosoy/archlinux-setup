@@ -22,6 +22,9 @@ compinit
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null || echo "zsh-autosuggestions not found"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null || echo "zsh-syntax-highlighting not found"
 
+# FNM (Fast Node Manager)
+eval "$(fnm env --use-on-cd)"
+
 # Starship Prompt
 eval "$(starship init zsh)"
 
@@ -34,3 +37,4 @@ alias ...='cd ../..'
 
 # Hyprland specific
 alias hypryou="hyprland --config /usr/share/hypryou/configs/hyprland/main.conf"
+export PATH="$HOME/.local/bin:$HOME/go/bin:$PATH"

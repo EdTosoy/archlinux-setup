@@ -85,7 +85,20 @@ yay -S --noconfirm \
     bibata-cursor-theme \
     hyprlock \
     hypridle \
-    ly
+    hypridle \
+    ly \
+    go \
+    python \
+    python-pip \
+    python-pipx \
+    postgresql \
+    npm
+
+# Global Node Tools (installed via npm to avoid permission issues if fnm isn't loaded yet)
+# Ideally we use fnm, but for system bootstrap, npm is fine or we verify fnm exists.
+# Let's rely on the user manual steps or automate fnm.
+# For now, let's just ensure fnm is installed.
+
 
 echo -e "${GREEN}Copying configuration files...${NC}"
 
