@@ -85,7 +85,6 @@ yay -S --noconfirm \
     bibata-cursor-theme \
     hyprlock \
     hypridle \
-    hypridle \
     ly \
     go \
     python \
@@ -112,11 +111,33 @@ if [ -d "$SCRIPT_DIR/config" ]; then
     
     for dir in "$SCRIPT_DIR/config/"*; do
         basename_dir=$(basename "$dir")
+        
+        # Special handling for ly (system config)
+        if [ "$basename_dir" == "ly" ]; then
+             echo -e "${YELLOW}Configuring ly (requires sudo)...${NC}"
+             sudo mkdir -p /etc/ly
+             if [ -f "$dir/config.ini" ]; then
+                 sudo cp "$dir/config.ini" /etc/ly/config.ini
+             fi
+             # Enable ly service
+             echo -e "${GREEN}Enabling ly service...${NC}"
+             sudo systemctl enable ly@tty2.service
+             continue
+        fi
+
         target_dir="$HOME/.config/$basename_dir"
         backup_item "$target_dir"
     done
     
-    cp -r "$SCRIPT_DIR/config/"* ~/.config/
+    # Copy all configs except ly (which is handled above)
+    # We use rsync or loop if we want to exclude ly, but standard cp will error on .config/ly if not careful or we just let it copy to .config which is harmless but useless.
+    # To be clean, let's copy individually skipping ly.
+    for dir in "$SCRIPT_DIR/config/"*; do
+        basename_dir=$(basename "$dir")
+        [ "$basename_dir" == "ly" ] && continue
+        cp -r "$dir" ~/.config/
+    done
+
 else
     echo -e "${RED}Error: config directory not found at $SCRIPT_DIR/config${NC}"
     exit 1
