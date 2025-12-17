@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Arch Linux + HyprYou Setup Script
+# Arch Linux + Illogical Impulse Hyprland Setup Script
 # Author: EdTosoy
 
 set -e
@@ -8,7 +8,7 @@ set -e
 # Get the script's directory for reliable relative paths
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 
-echo "🚀 Starting Arch Linux + HyprYou Setup..."
+echo "🚀 Starting Arch Linux + Illogical Impulse Hyprland Setup..."
 
 # Colors
 RED='\033[0;31m'
@@ -45,12 +45,12 @@ if ! command -v yay &> /dev/null; then
     cd - > /dev/null
 fi
 
-echo -e "${GREEN}Installing HyprYou...${NC}"
-yay -S --noconfirm hypryou hypryou-utils
+echo -e "${GREEN}Installing Illogical Impulse (end-4 dots)...${NC}"
+# Install the illogical-impulse dotfiles
+bash <(curl -s "https://end-4.github.io/dots-hyprland-wiki/setup.sh")
 
-echo -e "${GREEN}Installing dependencies...${NC}"
+echo -e "${GREEN}Installing additional dependencies...${NC}"
 sudo pacman -S --noconfirm \
-    alacritty \
     dunst \
     wofi \
     grim \
@@ -93,22 +93,10 @@ yay -S --noconfirm \
     postgresql \
     npm
 
-# Global Node Tools (installed via npm to avoid permission issues if fnm isn't loaded yet)
-# Ideally we use fnm, but for system bootstrap, npm is fine or we verify fnm exists.
-# Let's rely on the user manual steps or automate fnm.
-# For now, let's just ensure fnm is installed.
-
-
 echo -e "${GREEN}Copying configuration files...${NC}"
 
 # Ensure config directory exists in the repo
 if [ -d "$SCRIPT_DIR/config" ]; then
-    # Backup potentially existing configs that we are about to overwrite
-    # Note: cp -r config/* will overwrite directories inside ~/.config/.
-    # A simple backup of ~/.config is too much. Ideally we backup specific folders.
-    # For now, let's backup specific known conflict targets if we can identify them easier,
-    # or just backup the specific folders found in config/
-    
     for dir in "$SCRIPT_DIR/config/"*; do
         basename_dir=$(basename "$dir")
         
@@ -130,8 +118,6 @@ if [ -d "$SCRIPT_DIR/config" ]; then
     done
     
     # Copy all configs except ly (which is handled above)
-    # We use rsync or loop if we want to exclude ly, but standard cp will error on .config/ly if not careful or we just let it copy to .config which is harmless but useless.
-    # To be clean, let's copy individually skipping ly.
     for dir in "$SCRIPT_DIR/config/"*; do
         basename_dir=$(basename "$dir")
         [ "$basename_dir" == "ly" ] && continue
@@ -159,8 +145,6 @@ fc-cache -fv
 echo ""
 echo -e "${GREEN}✅ Installation complete!${NC}"
 echo ""
-echo "To start HyprYou, run:"
-echo -e "${YELLOW}  hyprland --config /usr/share/hypryou/configs/hyprland/main.conf${NC}"
-echo ""
-echo "Or add 'hypryou' alias to your .bashrc (already added)"
+echo "Your system is now configured with Illogical Impulse Hyprland dotfiles."
+echo "Please reboot or log out and log back in to apply all changes."
 echo ""

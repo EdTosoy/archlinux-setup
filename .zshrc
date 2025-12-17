@@ -36,5 +36,15 @@ alias ..='cd ..'
 alias ...='cd ../..'
 
 # Hyprland specific
-alias hypryou="hyprland --config /usr/share/hypryou/configs/hyprland/main.conf"
+export EDITOR="antigravity --wait"
+export VISUAL="antigravity --wait"
 export PATH="$HOME/.local/bin:$HOME/go/bin:$PATH"
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
