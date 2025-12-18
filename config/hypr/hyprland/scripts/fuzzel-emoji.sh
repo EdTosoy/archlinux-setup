@@ -5,6 +5,10 @@ MODE="${1:-type}"
 
 emoji="$(sed '1,/^### DATA ###$/d' "$0" | fuzzel --match-mode fzf --dmenu | cut -d ' ' -f 1 | tr -d '\n')"
 
+if [ -z "$emoji" ]; then
+    exit 0
+fi
+
 case "$MODE" in
     type)
         wtype "${emoji}" || wl-copy "${emoji}"

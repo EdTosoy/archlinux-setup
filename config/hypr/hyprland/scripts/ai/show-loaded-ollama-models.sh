@@ -87,10 +87,10 @@ parse_modelfiles() {
         fi
         curl -s "$ollama_url:$port"
     fi
-    local models=( $(curl -s "$ollama_url:$port/api/tags" | jq -r '.models[].name') )
+    readarray -t models < <(curl -s "$ollama_url:$port/api/tags" | jq -r '.models[].name')
     for model in "${models[@]}"; do
         local modelfile=$(curl -s "$ollama_url:$port/api/show" -d '{ "name": "'"$model"'", "modelfile": true }' | jq   -r '.modelfile')
-        model_name_paths+=($model,$(echo "$modelfile" | awk '/^FROM/{print $2}'))
+        model_name_paths+=("$model,$(echo "$modelfile" | awk '/^FROM/{print $2}')")
     done
 }
 
