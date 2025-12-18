@@ -1,13 +1,14 @@
 # 🎨 My Arch Linux Setup
 
-Personal Arch Linux configuration with HyprYou (Material You theme) on Hyprland.
+Personal Arch Linux configuration with Illogical Impulse (end-4 dots) on Hyprland.
 
 ## 🖥️ System Info
 
 - **OS**: Arch Linux
-- **WM**: Hyprland with HyprYou (Material You theme)
-- **Terminal**: Alacritty / Kitty
-- **Bar**: HyprYou bar (Material You styled)
+- **WM**: Hyprland with Illogical Impulse
+- **Terminal**: Foot / Kitty
+- **Shell**: Zsh with Starship prompt
+- **Bar**: Quickshell (illogical-impulse)
 - **Notifications**: Dunst
 - **Launcher**: Wofi
 
@@ -15,12 +16,19 @@ Personal Arch Linux configuration with HyprYou (Material You theme) on Hyprland.
 
 ```
 config/
-├── hypr/           # Hyprland config (fallback)
-├── hypryou/        # HyprYou customizations
-├── waybar/         # Waybar config (fallback)
-├── wofi/           # App launcher styling
-├── dunst/          # Notification daemon
-└── kitty/          # Kitty terminal config
+├── hypr/              # Hyprland configuration
+│   ├── hyprland/      # Core configs (keybinds, general, execs, etc.)
+│   ├── custom/        # Custom overrides
+│   ├── hyprlock/      # Lock screen configs
+│   ├── hypridle.conf  # Idle management
+│   ├── hyprlock.conf  # Lock screen settings
+│   └── hyprpaper.conf # Wallpaper config
+├── waybar/            # Waybar config (fallback)
+├── wofi/              # App launcher styling
+├── dunst/             # Notification daemon
+├── kitty/             # Kitty terminal config
+├── ly/                # Ly display manager config
+└── starship.toml      # Starship prompt config
 ```
 
 ## 🚀 Installation
@@ -40,26 +48,25 @@ cd archlinux-setup
 
 ### Manual Install
 
-1. Install HyprYou:
+1. Install Illogical Impulse (end-4 dots):
+
 ```bash
-yay -S hypryou hypryou-utils
+bash <(curl -s "https://end-4.github.io/dots-hyprland-wiki/setup.sh")
 ```
 
 2. Install dependencies:
+
 ```bash
-sudo pacman -S alacritty dunst wofi grim slurp wl-clipboard
-yay -S ttf-meslo-nerd-font-powerlevel10k tela-circle-icon-theme-nord satty
+sudo pacman -S dunst wofi grim slurp wl-clipboard zsh starship yazi
+yay -S ttf-meslo-nerd-font-powerlevel10k tela-circle-icon-theme-nord satty hyprlock hypridle ly
 ```
 
 3. Copy configs:
+
 ```bash
 cp -r config/* ~/.config/
 cp .bashrc ~/.bashrc
-```
-
-4. Start HyprYou:
-```bash
-hyprland --config /usr/share/hypryou/configs/hyprland/main.conf
+cp .zshrc ~/.zshrc
 ```
 
 ## ⌨️ Key Bindings
@@ -70,16 +77,17 @@ hyprland --config /usr/share/hypryou/configs/hyprland/main.conf
 | `SUPER + RETURN` | Terminal |
 | `SUPER + B` | Browser |
 | `SUPER + E` | File Manager |
-| `SUPER + D` | Settings |
 | `SUPER + Q` | Close Window |
-| `SUPER + W` | Sidebar |
+| `SUPER + W` | Overview/Sidebar |
 | `SUPER + L` | Lock Screen |
 | `SUPER + SHIFT + S` | Screenshot Region |
 
 ## 🎨 Customization
 
-### Reduce Window Gaps
-Edit `~/.config/hypryou/hyprland_generated.conf`:
+### Modify Window Gaps
+
+Edit `~/.config/hypr/custom/general.conf`:
+
 ```conf
 general {
     gaps_in = 1
@@ -87,13 +95,9 @@ general {
 }
 ```
 
-### Reduce Border Radius
-Edit `~/.config/hypryou/hyprland_generated.conf`:
-```conf
-decoration {
-    rounding = 6
-}
-```
+### Custom Keybinds
+
+Edit `~/.config/hypr/custom/keybinds.conf` to add your own keybindings.
 
 ## 📝 License
 
